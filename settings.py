@@ -94,5 +94,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'acollabauth.backends.ActiveCollabBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 AC_URL = 'http://yourcompany.com/'

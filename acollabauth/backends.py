@@ -6,6 +6,10 @@ class ActiveCollabBackend(object):
     """ Logs into a given Active Collab site and creates
     a new user based on a successful login there """
 
+    supports_object_permissions = False
+    supports_inactive_user = False
+    supports_anonymous_user = False
+
     def __init__(self):
         self.login_url = settings.AC_URL + '/login'
 
@@ -28,6 +32,9 @@ class ActiveCollabBackend(object):
         if 're_route=dashboard' in response.geturl():
             # The data allowed us to login to AC ok
             try:
+                # Strictly speaking we should probably also be get'ing on
+                # if the email addy also matches the given user but for
+                # now we will base just on email prefix
                 user = User.objects.get(username=email_user)
             except User.DoesNotExist:
                 user = User(username=email_user, email=username)

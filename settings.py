@@ -93,3 +93,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
 )
+
+
+AC_URL = 'http://yourcompany.com/'
